@@ -1,0 +1,6 @@
+{
+  "name": "Extr@ English Episode 5 Lesson",
+  "description": "An interactive ESL lesson for Episode 5 of Extr@ English with video, self-checking quizzes, vocabulary tasks, and results tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
