@@ -334,26 +334,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col justify-between pb-12">
+    <div className="min-h-screen bg-gradient-to-tr from-[#def1ff] via-[#fff7f0] to-[#feeeda] text-slate-800 antialiased font-sans flex flex-col justify-between pb-12">
       {/* HEADER SECTION */}
-      <div className="bg-gradient-to-r from-orange-500 via-amber-500 to-amber-400 text-white shadow-md relative overflow-hidden">
+      <div className="bg-gradient-to-r from-sky-600 via-indigo-500 to-orange-500 text-white shadow-xl relative overflow-hidden rounded-b-3xl">
         {/* Subtle decorative background stars */}
-        <div className="absolute top-4 left-4 text-orange-200/20 select-none animate-pulse pointer-events-none">
+        <div className="absolute top-4 left-4 text-sky-200/20 select-none animate-pulse pointer-events-none">
           <Sparkles size={120} />
         </div>
-        <div className="absolute bottom-[-10px] right-12 text-amber-200/30 select-none pointer-events-none">
+        <div className="absolute bottom-[-10px] right-12 text-orange-200/20 select-none pointer-events-none">
           <Tv size={160} />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 py-8 relative z-10">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-amber-100 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-amber-100 font-extrabold px-3 py-1 rounded-full text-xs uppercase tracking-widest mb-2 border border-white/10">
                 <Sparkles size={14} className="animate-spin-slow text-amber-200" />
                 <span>ESL Video Companion</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                extr@ English
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight">
+                Extr@ English
               </h1>
               <p className="text-lg text-amber-50 font-medium mt-1">
                 {language === 'EN'
@@ -402,7 +402,7 @@ export default function App() {
 
       {/* FLOATING SCORE STATS (IF ANY SCORES HAVE BEEN RECORDED) */}
       <div className="max-w-4xl mx-auto w-full px-4 mt-6">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md border border-sky-100/70 p-5 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-amber-50 text-amber-600 rounded-lg">
               <Award size={22} />
@@ -488,16 +488,16 @@ export default function App() {
       {/* MAIN LAYOUT */}
       <main className="max-w-4xl mx-auto w-full px-4 mt-6 flex-grow">
         {/* TABS COMPONENT */}
-        <div className="flex bg-white p-1 rounded-xl shadow-sm border border-slate-200 overflow-x-auto scrollbar-none gap-1 mb-6">
+        <div className="flex bg-white/60 backdrop-blur-md p-1.5 rounded-2xl shadow-md border border-sky-100/70 overflow-x-auto scrollbar-none gap-1 mb-6">
           {tabLabels.map((label, idx) => (
             <button
               key={idx}
               id={`tab-${idx}`}
               onClick={() => setActiveTab(idx)}
-              className={`flex-1 min-w-[120px] text-center py-2.5 px-3 rounded-lg font-bold text-sm transition-all relative ${
+              className={`flex-1 min-w-[120px] text-center py-3 px-3 rounded-xl font-bold text-sm transition-all relative ${
                 activeTab === idx
-                  ? 'bg-orange-500 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-orange-500 hover:bg-slate-50'
+                  ? 'bg-gradient-to-r from-sky-500 to-orange-500 text-white shadow-md font-extrabold'
+                  : 'text-slate-700 hover:text-sky-600 hover:bg-sky-50/50'
               }`}
             >
               {language === 'EN' ? label.en : label.ua}
@@ -512,7 +512,7 @@ export default function App() {
         </div>
 
         {/* CURRENT TAB PANEL */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 min-h-[400px]">
+        <div className="bg-white/85 backdrop-blur-lg rounded-3xl shadow-xl border border-sky-100/60 p-6 md:p-8 min-h-[400px]">
           <AnimatePresence mode="wait">
             {/* PANEL 1: WARM UP */}
             {activeTab === 0 && (
@@ -539,8 +539,8 @@ export default function App() {
                 )}
 
                 <div className="mb-6">
-                  <h2 className="text-xl md:text-2xl font-extrabold text-orange-600 flex items-center gap-2">
-                    <BookOpen size={22} />
+                  <h2 className="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                    <BookOpen size={22} className="text-sky-600" />
                     <span>{language === 'EN' ? 'So far in extr@...' : 'Раніше в extr@...'}</span>
                   </h2>
                   <p className="text-slate-500 text-sm mt-1">
@@ -558,14 +558,14 @@ export default function App() {
                     return (
                       <div
                         key={q.id}
-                        className={`p-4 rounded-xl border transition-all ${
+                        className={`p-5 rounded-2xl border transition-all ${
                           isChecked
                             ? studentAns === q.correctAnswer
-                              ? 'bg-emerald-50/50 border-emerald-200'
+                              ? 'bg-emerald-50/60 border-emerald-200 shadow-xs'
                               : studentAns
-                              ? 'bg-rose-50/50 border-rose-200'
-                              : 'bg-slate-50 border-slate-200'
-                            : 'bg-slate-50 border-slate-100 hover:border-slate-200'
+                              ? 'bg-rose-50/60 border-rose-200 shadow-xs'
+                              : 'bg-white/40 border-sky-100/50'
+                            : 'bg-white/50 border-sky-100/50 hover:bg-white/85 hover:border-sky-200 shadow-xs'
                         }`}
                       >
                         <p className="font-bold text-slate-800 text-sm md:text-base">
@@ -583,10 +583,10 @@ export default function App() {
                               <button
                                 key={opt.value}
                                 onClick={() => handleSelectMC(q.id, opt.value)}
-                                className={`text-left p-3 rounded-lg text-sm font-medium transition-all flex items-center justify-between border ${
+                                className={`text-left p-3 rounded-xl text-sm font-medium transition-all flex items-center justify-between border ${
                                   isSelected
-                                    ? 'bg-orange-50 border-orange-500 text-orange-950 font-semibold shadow-xs'
-                                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                                    ? 'bg-gradient-to-r from-sky-50 to-orange-50 border-orange-400 text-orange-950 font-bold shadow-xs'
+                                    : 'bg-white/95 border-slate-200/80 text-slate-700 hover:bg-slate-50'
                                 } ${
                                   showCorrectHighlight
                                     ? '!bg-emerald-500 !border-emerald-600 !text-white'
@@ -613,14 +613,14 @@ export default function App() {
                 <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
                     onClick={() => handleCheckSection(0)}
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-orange-500 hover:from-sky-600 hover:to-orange-600 active:from-sky-700 active:to-orange-700 text-white font-black px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
                     <CheckCircle size={18} />
                     <span>{language === 'EN' ? 'Check Section Answers' : 'Перевірити відповіді'}</span>
                   </button>
 
                   {checkedPanels[0] && (
-                    <div className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-slate-200">
+                    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-sky-100">
                       <span>{language === 'EN' ? 'Score:' : 'Бал:'}</span>
                       <span className="text-orange-600 text-base">
                         {evaluateTabScore(0).score} / {evaluateTabScore(0).max}
@@ -633,7 +633,7 @@ export default function App() {
                 <div className="mt-12 pt-6 border-t border-slate-100 flex justify-end">
                   <button
                     onClick={() => setActiveTab(1)}
-                    className="bg-slate-800 hover:bg-slate-700 active:bg-slate-950 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-slate-850 hover:bg-slate-750 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <span>{language === 'EN' ? 'Next: Vocabulary' : 'Далі: Лексика'}</span>
                     <ChevronRight size={16} />
@@ -651,26 +651,12 @@ export default function App() {
                 exit={{ opacity: 0, x: 10 }}
                 transition={{ duration: 0.2 }}
               >
-                {isTeacherMode && (
-                  <div className="mb-6 bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-xs text-amber-800">
-                    <h5 className="font-bold flex items-center gap-1.5 text-amber-900 mb-1.5">
-                      <Users size={14} />
-                      {teacherTips.vocabulary.title}
-                    </h5>
-                    <ul className="list-disc pl-4 space-y-1">
-                      {teacherTips.vocabulary.points.map((p, idx) => (
-                        <li key={idx}>{p}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
                 {/* 1. STUDENT VOCABULARY DICTIONARY (Bilingual & Interactive) */}
-                <div className="mb-10 bg-white p-5 md:p-6 rounded-2xl border border-slate-200/60 shadow-xs">
+                <div className="mb-10 bg-white/70 backdrop-blur-md p-5 md:p-6 rounded-3xl border border-sky-100/80 shadow-md">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div>
-                      <h2 className="text-xl md:text-2xl font-extrabold text-orange-600 flex items-center gap-2">
-                        <Book size={24} />
+                      <h2 className="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                        <Book size={24} className="text-sky-600" />
                         <span>{language === 'EN' ? 'Student Vocabulary Dictionary' : 'Словничок для учня'}</span>
                       </h2>
                       <p className="text-slate-500 text-sm mt-1">
@@ -685,8 +671,8 @@ export default function App() {
                       onClick={() => setIsTestMode(!isTestMode)}
                       className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 self-start md:self-auto ${
                         isTestMode
-                          ? 'bg-orange-50 text-orange-700 border-orange-200 shadow-xs'
-                          : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                          ? 'bg-gradient-to-r from-sky-50 to-orange-50 text-orange-700 border-orange-200 shadow-xs font-extrabold'
+                          : 'bg-white/80 text-slate-600 border-slate-200 hover:bg-slate-55'
                       }`}
                     >
                       <span>🧠 {language === 'EN' ? (isTestMode ? 'Test Mode: ON' : 'Self-Test Mode') : (isTestMode ? 'Режим тесту: ТАК' : 'Самоперевірка')}</span>
@@ -696,13 +682,13 @@ export default function App() {
                   {/* Search and Filters */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-6">
                     <div className="relative flex-1">
-                      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-450" size={16} />
                       <input
                         type="text"
                         placeholder={language === 'EN' ? "Search words or translation..." : "Пошук слова чи перекладу..."}
                         value={dictSearch}
                         onChange={(e) => setDictSearch(e.target.value)}
-                        className="w-full bg-slate-50/50 border border-slate-200 rounded-xl py-2 pl-10 pr-4 text-sm focus:bg-white focus:border-orange-500 outline-none transition-all"
+                        className="w-full bg-white/60 border border-sky-100 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:bg-white focus:border-orange-500 focus:ring-1 focus:ring-orange-200 outline-none transition-all"
                       />
                     </div>
 
@@ -716,7 +702,7 @@ export default function App() {
                             className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all border ${
                               isActive
                                 ? 'bg-slate-800 text-white border-slate-900 shadow-xs'
-                                : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'
+                                : 'bg-white/80 text-slate-500 border-slate-200 hover:bg-slate-55'
                             }`}
                           >
                             {filterOpt === 'all'
@@ -755,7 +741,7 @@ export default function App() {
                         return (
                           <div
                             key={item.word}
-                            className="bg-slate-50/40 p-4 rounded-xl border border-slate-200/50 flex flex-col justify-between transition-all hover:bg-slate-50 hover:border-slate-300 shadow-xs"
+                            className="bg-white/50 p-4.5 rounded-2xl border border-sky-100/40 flex flex-col justify-between transition-all hover:bg-white/85 hover:border-sky-200/80 shadow-xs"
                           >
                             <div>
                               <div className="flex justify-between items-start gap-2 mb-2">
@@ -763,14 +749,14 @@ export default function App() {
                                   <span className="font-extrabold text-slate-800 text-sm md:text-base font-mono tracking-tight">
                                     {item.word}
                                   </span>
-                                  <span className="bg-slate-200/60 text-slate-500 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">
+                                  <span className="bg-sky-100/60 text-sky-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">
                                     {item.partOfSpeech === 'phrase' ? 'phrase' : item.partOfSpeech}
                                   </span>
                                 </div>
 
                                 <button
                                   onClick={() => speakWord(item.word)}
-                                  className="p-1.5 bg-orange-50 text-orange-600 hover:bg-orange-100 rounded-lg transition-colors flex items-center justify-center shrink-0"
+                                  className="p-1.5 bg-sky-50 text-sky-600 hover:bg-sky-100 border border-sky-100 rounded-lg transition-colors flex items-center justify-center shrink-0"
                                   title="Listen pronunciation"
                                 >
                                   <Volume2 size={13} />
@@ -786,7 +772,7 @@ export default function App() {
                                 ) : (
                                   <button
                                     onClick={() => setDictRevealed(prev => ({ ...prev, [item.word]: true }))}
-                                    className="text-xs text-orange-500 font-bold hover:underline flex items-center gap-1"
+                                    className="text-xs text-sky-600 hover:text-orange-600 font-bold hover:underline flex items-center gap-1"
                                   >
                                     <span>{language === 'EN' ? 'Reveal Translation 👁️' : 'Показати переклад 👁️'}</span>
                                   </button>
@@ -795,7 +781,7 @@ export default function App() {
                             </div>
 
                             {/* Sentence Context */}
-                            <div className="border-t border-slate-200/60 pt-2 text-xs">
+                            <div className="border-t border-sky-100/45 pt-2 text-xs">
                               <p className="text-slate-600 font-medium italic">
                                 "{item.contextEn}"
                               </p>
@@ -814,8 +800,8 @@ export default function App() {
                 {/* 2. ADJECTIVES CLASSIFICATION */}
                 <div className="mb-10 pt-6 border-t border-slate-100">
                   <div className="mb-6">
-                    <h3 className="text-lg md:text-xl font-bold text-slate-800 flex items-center gap-2">
-                      <GraduationCap className="text-orange-500" size={20} />
+                    <h3 className="text-lg md:text-xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                      <GraduationCap className="text-sky-600" size={20} />
                       <span>{language === 'EN' ? 'Check the Meaning' : 'Перевірка значення слів'}</span>
                     </h3>
                     <p className="text-slate-500 text-sm mt-1">
@@ -834,12 +820,12 @@ export default function App() {
                       return (
                         <div
                           key={item.word}
-                          className={`bg-slate-50 p-4 rounded-xl border flex flex-col justify-between gap-3 transition-all ${
+                          className={`bg-white/55 p-4.5 rounded-2xl border flex flex-col justify-between gap-3 transition-all ${
                             isChecked
                               ? isCorrect
-                                ? 'bg-emerald-50/50 border-emerald-300'
-                                : 'bg-rose-50/50 border-rose-200'
-                              : 'border-slate-100 hover:border-slate-200'
+                                ? 'bg-emerald-50/60 border-emerald-300 shadow-xs'
+                                : 'bg-rose-50/60 border-rose-200 shadow-xs'
+                              : 'border-sky-100/65 hover:border-sky-200/80 hover:bg-white/80 shadow-xs'
                           }`}
                         >
                           <div className="flex justify-between items-center">
@@ -874,7 +860,7 @@ export default function App() {
                           <div className="grid grid-cols-3 gap-1">
                             {(['food', 'people', 'both'] as const).map((catOption) => {
                               const isChosen = studentChoice === catOption;
-                              let styleClass = 'bg-white text-slate-600 hover:bg-slate-100 border-slate-200';
+                              let styleClass = 'bg-white/90 text-slate-600 hover:bg-sky-50/50 border-slate-200/80';
 
                               if (isChosen) {
                                 if (catOption === 'food') {
@@ -912,8 +898,8 @@ export default function App() {
 
                 {/* 3. CULTURAL KNOWLEDGE MATCHING */}
                 <div className="mb-6 pt-6 border-t border-slate-100">
-                  <h3 className="text-lg md:text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <Sparkles className="text-amber-500" size={18} />
+                  <h3 className="text-lg md:text-xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                    <Sparkles className="text-sky-600" size={18} />
                     <span>{language === 'EN' ? 'Before You Watch (Cultural Background)' : 'Перед переглядом (Культурний контекст)'}</span>
                   </h3>
                   <p className="text-slate-500 text-sm mt-1">
@@ -930,14 +916,14 @@ export default function App() {
                     return (
                       <div
                         key={q.id}
-                        className={`p-4 rounded-xl border transition-all ${
+                        className={`p-5 rounded-2xl border transition-all ${
                           isChecked
                             ? studentAns === q.correctAnswer
-                              ? 'bg-emerald-50/50 border-emerald-200'
+                              ? 'bg-emerald-50/60 border-emerald-200 shadow-xs'
                               : studentAns
-                              ? 'bg-rose-50/50 border-rose-200'
-                              : 'bg-slate-50 border-slate-200'
-                            : 'bg-slate-50 border-slate-100 hover:border-slate-200'
+                              ? 'bg-rose-50/60 border-rose-200 shadow-xs'
+                              : 'bg-white/40 border-sky-100/50'
+                            : 'bg-white/50 border-sky-100/50 hover:bg-white/85 hover:border-sky-200 shadow-xs'
                         }`}
                       >
                         <p className="font-bold text-slate-800 text-sm md:text-base">
@@ -956,10 +942,10 @@ export default function App() {
                                 key={opt.value}
                                 disabled={isChecked}
                                 onClick={() => handleSelectMC(q.id, opt.value)}
-                                className={`text-left p-3 rounded-lg text-xs md:text-sm font-medium transition-all flex items-center justify-between border ${
+                                className={`text-left p-3 rounded-xl text-xs md:text-sm font-medium transition-all flex items-center justify-between border ${
                                   isSelected
-                                    ? 'bg-orange-50 border-orange-500 text-orange-950 font-semibold shadow-xs'
-                                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                                    ? 'bg-gradient-to-r from-sky-50 to-orange-50 border-orange-400 text-orange-950 font-bold shadow-xs'
+                                    : 'bg-white/95 border-slate-200/80 text-slate-700 hover:bg-sky-55'
                                 } ${
                                   showCorrectHighlight
                                     ? '!bg-emerald-500 !border-emerald-600 !text-white'
@@ -986,14 +972,14 @@ export default function App() {
                 <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
                     onClick={() => handleCheckSection(1)}
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-orange-500 hover:from-sky-600 hover:to-orange-600 active:from-sky-700 active:to-orange-700 text-white font-black px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
                     <CheckCircle size={18} />
                     <span>{language === 'EN' ? 'Check Section Answers' : 'Перевірити відповіді'}</span>
                   </button>
 
                   {checkedPanels[1] && (
-                    <div className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-slate-200">
+                    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-sky-100">
                       <span>{language === 'EN' ? 'Score:' : 'Бал:'}</span>
                       <span className="text-orange-600 text-base">
                         {evaluateTabScore(1).score} / {evaluateTabScore(1).max}
@@ -1003,10 +989,10 @@ export default function App() {
                 </div>
 
                 {/* Navigation */}
-                <div className="mt-12 pt-6 border-t border-slate-100 flex justify-between">
+                <div className="mt-12 pt-6 border-t border-sky-100/50 flex justify-between">
                   <button
                     onClick={() => setActiveTab(0)}
-                    className="bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-white/80 hover:bg-white border border-sky-100 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <ChevronLeft size={16} />
                     <span>{language === 'EN' ? 'Back' : 'Назад'}</span>
@@ -1014,7 +1000,7 @@ export default function App() {
 
                   <button
                     onClick={() => setActiveTab(2)}
-                    className="bg-slate-800 hover:bg-slate-700 active:bg-slate-950 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-slate-850 hover:bg-slate-755 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <span>{language === 'EN' ? 'Next: Watch Video' : 'Далі: Дивитись відео'}</span>
                     <ChevronRight size={16} />
@@ -1047,8 +1033,8 @@ export default function App() {
                 )}
 
                 <div className="mb-6">
-                  <h2 className="text-xl md:text-2xl font-extrabold text-orange-600 flex items-center gap-2">
-                    <Tv size={22} />
+                  <h2 className="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                    <Tv size={22} className="text-sky-600" />
                     <span>{language === 'EN' ? 'Watch Episode 5 & Check' : 'Перегляд Серії 5 та завдання'}</span>
                   </h2>
                   <p className="text-slate-500 text-sm mt-1 text-justify">
@@ -1059,8 +1045,8 @@ export default function App() {
                 </div>
 
                 {/* YouTube Video Player Wrapper with Mirror Toggles */}
-                <div className="bg-white p-4 rounded-2xl border border-slate-200/60 mb-8 shadow-xs">
-                  <div className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-slate-950">
+                <div className="bg-white/70 backdrop-blur-md p-5 rounded-3xl border border-sky-100/80 mb-8 shadow-md">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-slate-950">
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
                       src={`https://www.youtube.com/embed/${customVideoId.trim() || videoSource}`}
@@ -1072,7 +1058,7 @@ export default function App() {
                   </div>
 
                   {/* Video Source Switcher */}
-                  <div className="mt-4 border-t border-slate-100 pt-3">
+                  <div className="mt-4 border-t border-sky-100/40 pt-3">
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
                       <Sparkles size={12} className="text-orange-500 animate-pulse" />
                       {language === 'EN' ? '📺 Video Sources (Default is prepared)' : '📺 Джерела відео (Готово до перегляду)'}
@@ -1091,8 +1077,8 @@ export default function App() {
                             }}
                             className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
                               videoSource === src.id && !customVideoId
-                                ? 'bg-orange-500 text-white border-orange-600 shadow-xs'
-                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                ? 'bg-gradient-to-r from-sky-500 to-orange-500 text-white border-orange-500/50 shadow-xs'
+                                : 'bg-white/80 text-slate-600 border-sky-100/50 hover:bg-sky-50/50'
                             }`}
                           >
                             {src.label}
@@ -1115,7 +1101,7 @@ export default function App() {
                 </div>
 
                 {/* Yes/No Interactive Checklist */}
-                <div className="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                <div className="space-y-3 bg-white/50 p-4 rounded-3xl border border-sky-100/50">
                   {partOneEvents.map((ev) => {
                     const studentAns = partOneAnswers[ev.id];
                     const isChecked = checkedPanels[2];
@@ -1124,12 +1110,12 @@ export default function App() {
                     return (
                       <div
                         key={ev.id}
-                        className={`p-3 rounded-xl border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-all ${
+                        className={`p-3.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-all ${
                           isChecked
                             ? isCorrect
-                              ? 'bg-emerald-50/50 border-emerald-200'
-                              : 'bg-rose-50/50 border-rose-200'
-                            : 'bg-white border-slate-100 hover:border-slate-200'
+                              ? 'bg-emerald-50/60 border-emerald-200'
+                              : 'bg-rose-50/60 border-rose-200'
+                            : 'bg-white/85 border-sky-100/50 hover:bg-white hover:border-sky-200/80 shadow-xs'
                         }`}
                       >
                         <span className="font-semibold text-slate-800 text-sm md:text-base">
@@ -1154,8 +1140,8 @@ export default function App() {
                                   ? ev.correctAnswer === 'yes'
                                     ? 'bg-emerald-500 text-white border-emerald-600'
                                     : 'bg-rose-500 text-white border-rose-600'
-                                  : 'bg-orange-500 text-white border-orange-600'
-                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                  : 'bg-gradient-to-r from-sky-500 to-orange-500 text-white border-orange-500/50 font-bold'
+                                : 'bg-white/85 text-slate-600 border-sky-100/50 hover:bg-sky-50/50'
                             } ${
                               isChecked && ev.correctAnswer === 'yes' && studentAns !== 'yes'
                                 ? 'ring-2 ring-emerald-500 ring-offset-2'
@@ -1175,8 +1161,8 @@ export default function App() {
                                   ? ev.correctAnswer === 'no'
                                     ? 'bg-emerald-500 text-white border-emerald-600'
                                     : 'bg-rose-500 text-white border-rose-600'
-                                  : 'bg-orange-500 text-white border-orange-600'
-                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                  : 'bg-gradient-to-r from-sky-500 to-orange-500 text-white border-orange-500/50 font-bold'
+                                : 'bg-white/85 text-slate-600 border-sky-100/50 hover:bg-sky-50/50'
                             } ${
                               isChecked && ev.correctAnswer === 'no' && studentAns !== 'no'
                                 ? 'ring-2 ring-emerald-500 ring-offset-2'
@@ -1195,14 +1181,14 @@ export default function App() {
                 <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
                     onClick={() => handleCheckSection(2)}
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-orange-500 hover:from-sky-600 hover:to-orange-600 active:from-sky-700 active:to-orange-700 text-white font-black px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
                     <CheckCircle size={18} />
                     <span>{language === 'EN' ? 'Check Section Answers' : 'Перевірити відповіді'}</span>
                   </button>
 
                   {checkedPanels[2] && (
-                    <div className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-slate-200">
+                    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-sky-100">
                       <span>{language === 'EN' ? 'Score:' : 'Бал:'}</span>
                       <span className="text-orange-600 text-base">
                         {evaluateTabScore(2).score} / {evaluateTabScore(2).max}
@@ -1212,10 +1198,10 @@ export default function App() {
                 </div>
 
                 {/* Navigation */}
-                <div className="mt-12 pt-6 border-t border-slate-100 flex justify-between">
+                <div className="mt-12 pt-6 border-t border-sky-100/50 flex justify-between">
                   <button
                     onClick={() => setActiveTab(1)}
-                    className="bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-white/80 hover:bg-white border border-sky-100 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <ChevronLeft size={16} />
                     <span>{language === 'EN' ? 'Back' : 'Назад'}</span>
@@ -1223,7 +1209,7 @@ export default function App() {
 
                   <button
                     onClick={() => setActiveTab(3)}
-                    className="bg-slate-800 hover:bg-slate-700 active:bg-slate-950 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-slate-855 hover:bg-slate-755 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <span>{language === 'EN' ? 'Next: Cloze Exercises' : 'Далі: Заповнення пропусків'}</span>
                     <ChevronRight size={16} />
@@ -1256,8 +1242,8 @@ export default function App() {
                 )}
 
                 <div className="mb-6">
-                  <h2 className="text-xl md:text-2xl font-extrabold text-orange-600 flex items-center gap-2">
-                    <BookOpen size={22} />
+                  <h2 className="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                    <BookOpen size={22} className="text-sky-600" />
                     <span>{language === 'EN' ? "Dialogue & Recipe Checks" : "Перевірка діалогів та рецептів"}</span>
                   </h2>
                   <p className="text-slate-500 text-sm mt-1">
@@ -1269,157 +1255,157 @@ export default function App() {
 
                 {/* Sub-Section 1: Annie's TV Rehearsal */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
-                    <Tv size={18} className="text-orange-500" />
+                  <h3 className="text-lg font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2 mb-3">
+                    <Tv size={18} className="text-sky-600" />
                     <span>{language === 'EN' ? "Part Two: Annie's TV Ad Rehearsal" : "Частина 2: Репетиція телереклами Енні"}</span>
                   </h3>
 
-                  <div className="bg-slate-50 rounded-2xl border border-slate-100 p-6 leading-loose text-slate-700 md:text-lg">
+                  <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-sky-100/80 p-6 leading-loose text-slate-700 md:text-lg shadow-md">
                     "Hello there. As a{' '}
                     <select
                       id="cloze-gap1"
                       value={clozeAnswers['cloze-gap1']}
                       onChange={(e) => handleClozeChange('cloze-gap1', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap1'] === 'mother'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="mother">mother</option>
                       <option value="brother">brother</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(mother)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(mother)</span>}
                     , I must fight different{' '}
                     <select
                       id="cloze-gap2"
                       value={clozeAnswers['cloze-gap2']}
                       onChange={(e) => handleClozeChange('cloze-gap2', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap2'] === 'stains'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="stains">stains</option>
                       <option value="trains">trains</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(stains)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(stains)</span>}
                     every day. Tomato ketchup. Chocolate – huh! Gravy. And egg. But{' '}
                     <select
                       id="cloze-gap3"
                       value={clozeAnswers['cloze-gap3']}
                       onChange={(e) => handleClozeChange('cloze-gap3', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap3'] === 'help'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="help">help</option>
                       <option value="hell">hell</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(help)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(help)</span>}
                     is here! I will wash one{' '}
                     <select
                       id="cloze-gap4"
                       value={clozeAnswers['cloze-gap4']}
                       onChange={(e) => handleClozeChange('cloze-gap4', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap4'] === 'shirt'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="skirt">skirt</option>
                       <option value="shirt">shirt</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(shirt)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(shirt)</span>}
                     in ordinary washing powder and the other in new Zap! So, the{' '}
                     <select
                       id="cloze-gap5"
                       value={clozeAnswers['cloze-gap5']}
                       onChange={(e) => handleClozeChange('cloze-gap5', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap5'] === 'shirt'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="skirt">skirt</option>
                       <option value="shirt">shirt</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(shirt)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(shirt)</span>}
                     washed in{' '}
                     <select
                       id="cloze-gap6"
                       value={clozeAnswers['cloze-gap6']}
                       onChange={(e) => handleClozeChange('cloze-gap6', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap6'] === 'normal'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="normal">normal</option>
                       <option value="horrible">horrible</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(normal)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(normal)</span>}
                     washing powder is – oh! – still{' '}
                     <select
                       id="cloze-gap7"
                       value={clozeAnswers['cloze-gap7']}
                       onChange={(e) => handleClozeChange('cloze-gap7', e.target.value)}
                       disabled={checkedPanels[3]}
-                      className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
+                      className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm md:text-base inline-block outline-none cursor-pointer transition-all ${
                         checkedPanels[3]
                           ? clozeAnswers['cloze-gap7'] === 'dirty'
-                            ? 'bg-emerald-100 border-emerald-400 text-emerald-800'
-                            : 'bg-rose-100 border-rose-300 text-rose-800'
-                          : 'border-orange-200 text-orange-800 focus:border-orange-500'
+                            ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                            : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                          : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                       }`}
                     >
                       <option value="">--choose--</option>
                       <option value="dirty">dirty</option>
                       <option value="thirsty">thirsty</option>
                     </select>{' '}
-                    {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(dirty)</span>}
+                    {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(dirty)</span>}
                     , but the shirt washed in new Zap is...\"
                   </div>
                 </div>
 
                 {/* Sub-Section 2: Chocolate Mousse Recipe */}
                 <div className="mb-6 pt-6 border-t border-slate-100">
-                  <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
-                    <ChefHat size={18} className="text-orange-500" />
+                  <h3 className="text-lg font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2 mb-3">
+                    <ChefHat size={18} className="text-sky-600" />
                     <span>{language === 'EN' ? "Part Three: Chocolate Mousse Recipe" : "Частина 3: Рецепт шоколадного мусу"}</span>
                   </h3>
 
-                  <div className="bg-amber-50/40 rounded-2xl border border-amber-100 p-6 space-y-4 md:text-lg">
+                  <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-sky-100/80 p-6 space-y-4 md:text-lg shadow-md">
                     <div>
                       1. First, take some chocolate.{' '}
                       <select
@@ -1427,19 +1413,19 @@ export default function App() {
                         value={recipeAnswers['recipe-r1']}
                         onChange={(e) => handleRecipeChange('recipe-r1', e.target.value)}
                         disabled={checkedPanels[3]}
-                        className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm outline-none cursor-pointer transition-all ${
+                        className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm outline-none cursor-pointer transition-all ${
                           checkedPanels[3]
                             ? recipeAnswers['recipe-r1'] === 'melt'
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-800 font-bold'
-                              : 'bg-rose-100 border-rose-300 text-rose-800'
-                            : 'border-amber-300 focus:border-amber-500'
+                              ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                              : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                            : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                         }`}
                       >
                         <option value="">--choose--</option>
                         <option value="melt">Melt</option>
                         <option value="mix">Mix</option>
                       </select>{' '}
-                      {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(Melt)</span>} it over hot water.
+                      {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(Melt)</span>} it over hot water.
                     </div>
 
                     <div>
@@ -1449,19 +1435,19 @@ export default function App() {
                         value={recipeAnswers['recipe-r2']}
                         onChange={(e) => handleRecipeChange('recipe-r2', e.target.value)}
                         disabled={checkedPanels[3]}
-                        className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm outline-none cursor-pointer transition-all ${
+                        className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm outline-none cursor-pointer transition-all ${
                           checkedPanels[3]
                             ? recipeAnswers['recipe-r2'] === 'separate'
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-800 font-bold'
-                              : 'bg-rose-100 border-rose-300 text-rose-800'
-                            : 'border-amber-300 focus:border-amber-500'
+                              ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                              : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                            : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                         }`}
                       >
                         <option value="">--choose--</option>
                         <option value="separate">Separate</option>
                         <option value="add">Add</option>
                       </select>{' '}
-                      {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(Separate)</span>} the yolk of the egg from the white.
+                      {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(Separate)</span>} the yolk of the egg from the white.
                     </div>
 
                     <div>
@@ -1471,19 +1457,19 @@ export default function App() {
                         value={recipeAnswers['recipe-r3']}
                         onChange={(e) => handleRecipeChange('recipe-r3', e.target.value)}
                         disabled={checkedPanels[3]}
-                        className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm outline-none cursor-pointer transition-all ${
+                        className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm outline-none cursor-pointer transition-all ${
                           checkedPanels[3]
                             ? recipeAnswers['recipe-r3'] === 'mix'
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-800 font-bold'
-                              : 'bg-rose-100 border-rose-300 text-rose-800'
-                            : 'border-amber-300 focus:border-amber-500'
+                              ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                              : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                            : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                         }`}
                       >
                         <option value="">--choose--</option>
                         <option value="add">Add</option>
                         <option value="mix">Mix</option>
                       </select>{' '}
-                      {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(Mix)</span>} the egg yolk and the chocolate.
+                      {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(Mix)</span>} the egg yolk and the chocolate.
                     </div>
 
                     <div>
@@ -1493,19 +1479,19 @@ export default function App() {
                         value={recipeAnswers['recipe-r4']}
                         onChange={(e) => handleRecipeChange('recipe-r4', e.target.value)}
                         disabled={checkedPanels[3]}
-                        className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm outline-none cursor-pointer transition-all ${
+                        className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm outline-none cursor-pointer transition-all ${
                           checkedPanels[3]
                             ? recipeAnswers['recipe-r4'] === 'add'
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-800 font-bold'
-                              : 'bg-rose-100 border-rose-300 text-rose-800'
-                            : 'border-amber-300 focus:border-amber-500'
+                              ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                              : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                            : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                         }`}
                       >
                         <option value="">--choose--</option>
                         <option value="add">Add</option>
                         <option value="separate">Separate</option>
                       </select>{' '}
-                      {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(Add)</span>} the butter.
+                      {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(Add)</span>} the butter.
                     </div>
 
                     <div>
@@ -1515,19 +1501,19 @@ export default function App() {
                         value={recipeAnswers['recipe-r5']}
                         onChange={(e) => handleRecipeChange('recipe-r5', e.target.value)}
                         disabled={checkedPanels[3]}
-                        className={`font-semibold bg-white border px-2 py-1 rounded-lg text-sm outline-none cursor-pointer transition-all ${
+                        className={`font-semibold bg-white/95 border px-2 py-1.5 rounded-xl text-sm outline-none cursor-pointer transition-all ${
                           checkedPanels[3]
                             ? recipeAnswers['recipe-r5'] === 'add'
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-800 font-bold'
-                              : 'bg-rose-100 border-rose-300 text-rose-800'
-                            : 'border-amber-300 focus:border-amber-500'
+                              ? 'bg-emerald-500 border-emerald-650 text-white font-extrabold shadow-xs'
+                              : 'bg-rose-500 border-rose-650 text-white font-extrabold shadow-xs'
+                            : 'border-sky-150 text-sky-850 focus:border-orange-500 focus:ring-1 focus:ring-orange-200'
                         }`}
                       >
                         <option value="">--choose--</option>
                         <option value="add">Add</option>
                         <option value="melt">Melt</option>
                       </select>{' '}
-                      {isTeacherMode && <span className="text-xs text-amber-600 font-bold">(Add)</span>} the whites to the chocolate and put it in the fridge.
+                      {isTeacherMode && <span className="text-xs text-amber-650 font-bold">(Add)</span>} the whites to the chocolate and put it in the fridge.
                     </div>
                   </div>
                 </div>
@@ -1536,14 +1522,14 @@ export default function App() {
                 <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
                     onClick={() => handleCheckSection(3)}
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-orange-500 hover:from-sky-600 hover:to-orange-600 active:from-sky-700 active:to-orange-700 text-white font-black px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
                     <CheckCircle size={18} />
                     <span>{language === 'EN' ? 'Check Section Answers' : 'Перевірити відповіді'}</span>
                   </button>
 
                   {checkedPanels[3] && (
-                    <div className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-slate-200">
+                    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-sky-100">
                       <span>{language === 'EN' ? 'Score:' : 'Бал:'}</span>
                       <span className="text-orange-600 text-base">
                         {evaluateTabScore(3).score} / {evaluateTabScore(3).max}
@@ -1553,10 +1539,10 @@ export default function App() {
                 </div>
 
                 {/* Navigation */}
-                <div className="mt-12 pt-6 border-t border-slate-100 flex justify-between">
+                <div className="mt-12 pt-6 border-t border-sky-100/50 flex justify-between">
                   <button
                     onClick={() => setActiveTab(2)}
-                    className="bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-white/80 hover:bg-white border border-sky-100 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <ChevronLeft size={16} />
                     <span>{language === 'EN' ? 'Back' : 'Назад'}</span>
@@ -1564,7 +1550,7 @@ export default function App() {
 
                   <button
                     onClick={() => setActiveTab(4)}
-                    className="bg-slate-800 hover:bg-slate-700 active:bg-slate-950 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-slate-855 hover:bg-slate-755 text-white font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <span>{language === 'EN' ? 'Next: Review & Score' : 'Далі: Підсумки та Оцінка'}</span>
                     <ChevronRight size={16} />
@@ -1597,8 +1583,8 @@ export default function App() {
                 )}
 
                 <div className="mb-6">
-                  <h2 className="text-xl md:text-2xl font-extrabold text-orange-600 flex items-center gap-2">
-                    <Award size={22} />
+                  <h2 className="text-xl md:text-2xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent flex items-center gap-2">
+                    <Award size={22} className="text-sky-600" />
                     <span>{language === 'EN' ? 'Episode Summary Check' : 'Перевірка знання сюжету серії'}</span>
                   </h2>
                   <p className="text-slate-500 text-sm mt-1">
@@ -1609,7 +1595,7 @@ export default function App() {
                 </div>
 
                 {/* True/False Statements Checklist */}
-                <div className="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                <div className="space-y-3 bg-white/50 p-4 rounded-3xl border border-sky-100/50">
                   {summaryQuestions.map((q) => {
                     const studentAns = summaryAnswers[q.id];
                     const isChecked = checkedPanels[4];
@@ -1618,12 +1604,12 @@ export default function App() {
                     return (
                       <div
                         key={q.id}
-                        className={`p-3 rounded-xl border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-all ${
+                        className={`p-3.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-all ${
                           isChecked
                             ? isCorrect
-                              ? 'bg-emerald-50/50 border-emerald-200'
-                              : 'bg-rose-50/50 border-rose-200'
-                            : 'bg-white border-slate-100 hover:border-slate-200'
+                              ? 'bg-emerald-50/60 border-emerald-200'
+                              : 'bg-rose-50/60 border-rose-200'
+                            : 'bg-white/85 border-sky-100/50 hover:bg-white hover:border-sky-200/80 shadow-xs'
                         }`}
                       >
                         <span className="font-semibold text-slate-800 text-sm md:text-base">
@@ -1647,8 +1633,8 @@ export default function App() {
                                   ? q.correctAnswer === 'true'
                                     ? 'bg-emerald-500 text-white border-emerald-600'
                                     : 'bg-rose-500 text-white border-rose-600'
-                                  : 'bg-orange-500 text-white border-orange-600'
-                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                  : 'bg-gradient-to-r from-sky-500 to-orange-500 text-white border-orange-500/50 font-bold'
+                                : 'bg-white/85 text-slate-600 border-sky-100/50 hover:bg-sky-50/50'
                             } ${
                               isChecked && q.correctAnswer === 'true' && studentAns !== 'true'
                                 ? 'ring-2 ring-emerald-500 ring-offset-2'
@@ -1667,8 +1653,8 @@ export default function App() {
                                   ? q.correctAnswer === 'false'
                                     ? 'bg-emerald-500 text-white border-emerald-600'
                                     : 'bg-rose-500 text-white border-rose-600'
-                                  : 'bg-orange-500 text-white border-orange-600'
-                                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                  : 'bg-gradient-to-r from-sky-500 to-orange-500 text-white border-orange-500/50 font-bold'
+                                : 'bg-white/85 text-slate-600 border-sky-100/50 hover:bg-sky-50/50'
                             } ${
                               isChecked && q.correctAnswer === 'false' && studentAns !== 'false'
                                 ? 'ring-2 ring-emerald-500 ring-offset-2'
@@ -1687,14 +1673,14 @@ export default function App() {
                 <div className="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
                     onClick={() => handleCheckSection(4)}
-                    className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-orange-500 hover:from-sky-600 hover:to-orange-600 active:from-sky-700 active:to-orange-700 text-white font-black px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
                     <CheckCircle size={18} />
                     <span>{language === 'EN' ? 'Check Section Answers' : 'Перевірити відповіді'}</span>
                   </button>
 
                   {checkedPanels[4] && (
-                    <div className="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-slate-200">
+                    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold text-slate-700 border border-sky-100">
                       <span>{language === 'EN' ? 'Score:' : 'Бал:'}</span>
                       <span className="text-orange-600 text-base">
                         {evaluateTabScore(4).score} / {evaluateTabScore(4).max}
@@ -1704,11 +1690,11 @@ export default function App() {
                 </div>
 
                 {/* DIVIDER */}
-                <hr className="my-10 border-slate-200" />
+                <hr className="my-10 border-sky-100/40" />
 
                 {/* GLOBAL SCORE REPORT GAUGE */}
-                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 text-center shadow-inner max-w-lg mx-auto">
-                  <h3 className="text-xl font-bold text-slate-800">
+                <div className="bg-white/70 backdrop-blur-md border border-sky-100 rounded-3xl p-6 text-center shadow-md max-w-lg mx-auto">
+                  <h3 className="text-xl font-black bg-gradient-to-r from-sky-600 to-orange-600 bg-clip-text text-transparent">
                     {language === 'EN' ? 'Calculate Your Performance Grade' : 'Дізнатися фінальну оцінку'}
                   </h3>
                   <p className="text-slate-400 text-xs uppercase tracking-wider font-semibold mt-1">
@@ -1717,7 +1703,7 @@ export default function App() {
 
                   <button
                     onClick={handleCalculateTotalScore}
-                    className="mt-5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold px-8 py-4 rounded-2xl transition-all shadow-md hover:shadow-lg transform active:scale-[0.98] flex items-center gap-2.5 mx-auto text-base"
+                    className="mt-5 bg-gradient-to-r from-sky-500 via-orange-500 to-emerald-500 hover:from-sky-600 hover:via-orange-600 hover:to-emerald-600 text-white font-black px-8 py-4 rounded-2xl transition-all shadow-md hover:shadow-lg transform active:scale-[0.98] flex items-center gap-2.5 mx-auto text-base"
                   >
                     <Award size={20} />
                     <span>{language === 'EN' ? 'Get Final Results Score' : 'Порахувати загальний результат'}</span>
@@ -1734,49 +1720,49 @@ export default function App() {
                         {totalScore} <span className="text-slate-300 text-3xl font-bold">/ 50</span>
                       </div>
 
-                      <div className="w-full bg-slate-200 h-4 rounded-full overflow-hidden mt-3 shadow-xs">
+                      <div className="w-full bg-sky-100/40 h-4 rounded-full overflow-hidden mt-3 shadow-xs">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${totalPercent}%` }}
                           transition={{ duration: 1, ease: 'easeOut' }}
-                          className="bg-gradient-to-r from-orange-500 to-emerald-500 h-full rounded-full"
+                          className="bg-gradient-to-r from-sky-500 via-orange-500 to-emerald-500 h-full rounded-full"
                         />
                       </div>
 
-                      <p className="text-xs text-slate-400 font-bold text-right mt-1.5">
+                      <p className="text-xs text-slate-450 font-bold text-right mt-1.5">
                         {totalPercent}% {language === 'EN' ? 'Completed' : 'Виконано'}
                       </p>
 
                       {/* Grade Badge */}
-                      <div className="mt-4 inline-block px-4 py-2 bg-white rounded-xl border border-slate-100 shadow-xs">
+                      <div className="mt-4 inline-block px-4 py-2 bg-white rounded-xl border border-sky-100/55 shadow-xs">
                         <p className="text-lg font-bold text-slate-800 italic leading-snug">
                           {getEncouragement()}
                         </p>
                       </div>
 
                       {/* SECTION BREAKDOWNS LIST */}
-                      <div className="mt-6 pt-5 border-t border-slate-200/60 text-left text-xs text-slate-600 space-y-2">
+                      <div className="mt-6 pt-5 border-t border-sky-100/50 text-left text-xs text-slate-600 space-y-2">
                         <h4 className="font-bold text-slate-700 text-sm mb-3 text-center">
                           {language === 'EN' ? 'Points Breakdown:' : 'Деталізація балів за розділами:'}
                         </h4>
                         <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="flex justify-between bg-white p-2.5 rounded-xl border border-slate-100">
+                          <div className="flex justify-between bg-white/80 p-2.5 rounded-xl border border-sky-100/40 hover:bg-white">
                             <span className="font-medium">1. Warm Up:</span>
                             <span className="font-bold text-orange-600">{getSectionScoreText('warmup')}</span>
                           </div>
-                          <div className="flex justify-between bg-white p-2.5 rounded-xl border border-slate-100">
+                          <div className="flex justify-between bg-white/80 p-2.5 rounded-xl border border-sky-100/40 hover:bg-white">
                             <span className="font-medium">2. Vocabulary:</span>
                             <span className="font-bold text-orange-600">{getSectionScoreText('vocab')}</span>
                           </div>
-                          <div className="flex justify-between bg-white p-2.5 rounded-xl border border-slate-100">
+                          <div className="flex justify-between bg-white/80 p-2.5 rounded-xl border border-sky-100/40 hover:bg-white">
                             <span className="font-medium">3. Part One watch:</span>
                             <span className="font-bold text-orange-600">{getSectionScoreText('watching')}</span>
                           </div>
-                          <div className="flex justify-between bg-white p-2.5 rounded-xl border border-slate-100">
+                          <div className="flex justify-between bg-white/80 p-2.5 rounded-xl border border-sky-100/40 hover:bg-white">
                             <span className="font-medium">4. Cloze checks:</span>
                             <span className="font-bold text-orange-600">{getSectionScoreText('cloze')}</span>
                           </div>
-                          <div className="col-span-2 flex justify-between bg-white p-2.5 rounded-xl border border-slate-100">
+                          <div className="col-span-2 flex justify-between bg-white/80 p-2.5 rounded-xl border border-sky-100/40 hover:bg-white">
                             <span className="font-medium">5. Summary T/F:</span>
                             <span className="font-bold text-orange-600">{getSectionScoreText('review')}</span>
                           </div>
@@ -1785,7 +1771,7 @@ export default function App() {
                         {/* Restart Button */}
                         <button
                           onClick={handleResetAll}
-                          className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 font-bold py-2.5 rounded-xl border border-slate-200 transition-colors flex items-center justify-center gap-1.5"
+                          className="w-full mt-6 bg-orange-500/10 hover:bg-orange-500/20 text-orange-700 hover:text-orange-850 font-bold py-2.5 rounded-xl border border-orange-200/50 transition-colors flex items-center justify-center gap-1.5"
                         >
                           <RotateCcw size={14} />
                           <span>{language === 'EN' ? 'Reset Lesson & Start Over' : 'Очистити результати та почати заново'}</span>
@@ -1796,10 +1782,10 @@ export default function App() {
                 </div>
 
                 {/* Navigation */}
-                <div className="mt-12 pt-6 border-t border-slate-100 flex justify-between">
+                <div className="mt-12 pt-6 border-t border-sky-100/50 flex justify-between">
                   <button
                     onClick={() => setActiveTab(3)}
-                    className="bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
+                    className="bg-white/80 hover:bg-white border border-sky-100 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2"
                   >
                     <ChevronLeft size={16} />
                     <span>{language === 'EN' ? 'Back' : 'Назад'}</span>
